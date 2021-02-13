@@ -36,6 +36,7 @@ const (
 	WristVertOption = "Wrist Verticle"
 	WristRotOption  = "Wrist Rotation"
 	GripperOption   = "Gripper"
+	EndOption       = "END"
 
 	DefaultBaud = 9600
 )
@@ -85,7 +86,7 @@ func main() {
 		serialConn: serialConn,
 	}
 
-	options := []string{BaseOption, ShoulderOption, ElbowOption, WristVertOption, WristRotOption, GripperOption}
+	options := []string{BaseOption, ShoulderOption, ElbowOption, WristVertOption, WristRotOption, GripperOption, EndOption}
 	printState(state)
 
 	isRunning := true
@@ -122,6 +123,9 @@ func main() {
 		case GripperOption:
 			state.GripperAngle = fetchAngle()
 			armController.wristGripperAngleToArm(state.GripperAngle)
+		case EndOption:
+			isRunning = false
+			continue
 		}
 
 		printState(state)
