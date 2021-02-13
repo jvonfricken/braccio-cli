@@ -29,7 +29,6 @@ void setup() {
   Serial.begin(9600);
   Braccio.begin();
 
-  //(step delay, M1, M2, M3, M4, M5, M6);
   Braccio.ServoMovement(20, targetBase, targetShoulder, targetElbow,
                         targetWristVert, targetWristRot, targetGripper);
 }
